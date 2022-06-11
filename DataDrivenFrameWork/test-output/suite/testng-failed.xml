@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [suite]">
+  <test thread-count="5" name="Buy Stocks(failed)">
+    <classes>
+      <class name="TestCases.rediff.stockManagement">
+        <methods>
+          <include name="quiT"/>
+          <include name="buyTheStock"/>
+          <include name="beforeTest"/>
+          <include name="beforeMethod"/>
+        </methods>
+      </class> <!-- TestCases.rediff.stockManagement -->
+    </classes>
+  </test> <!-- Buy Stocks(failed) -->
+</suite> <!-- Failed suite [suite] -->

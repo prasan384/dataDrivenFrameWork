@@ -1,0 +1,20 @@
+GENERIC KeyWords--->
+
+openbrowser
+navigate to website
+click
+type
+select
+gettext
+
+VALIDATION keywords-->
+
+validate Title
+validate Text
+validate elementpresent
+
+APPLICATION dependent keywords--->
+
+Login
+select date from calendar
+verifyStockAdded

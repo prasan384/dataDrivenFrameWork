@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Portfolio Suite">
+	<test thread-count="5" name="Create Portfolio Test">
+		<classes>
+			<class name="TestCases.rediff.session">
+				<methods>
+					<include name="doLogin"/>
+				</methods>
+			</class>
+			<class name="TestCases.rediff.portfolioManagement">
+				<methods>
+					<include name="CreatePortfolio"/>
+				</methods>
+			</class>
+		</classes>
+	</test> 
+	<test thread-count="5" name="delete Portfolio Test">
+		<classes>
+			<class name="TestCases.rediff.session">
+				<methods>
+					<include name="doLogin"/>
+				</methods>
+			</class>
+			<class name="TestCases.rediff.portfolioManagement">
+				<methods>
+					<include name="deletePortfolio"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite> 
