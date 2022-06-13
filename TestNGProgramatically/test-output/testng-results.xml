@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name=" MY Suite" duration-ms="78" started-at="2022-05-24T12:07:19 IST" finished-at="2022-05-24T12:07:19 IST">
+    <groups>
+    </groups>
+    <test name="Login Test" duration-ms="78" started-at="2022-05-24T12:07:19 IST" finished-at="2022-05-24T12:07:19 IST">
+      <class name="TestCases.Login">
+        <test-method status="PASS" signature="doLogin()[pri:0, instance:TestCases.Login@511baa65]" name="doLogin" duration-ms="8" started-at="2022-05-24T12:07:19 IST" finished-at="2022-05-24T12:07:19 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- doLogin -->
+      </class> <!-- TestCases.Login -->
+    </test> <!-- Login Test -->
+  </suite> <!--  MY Suite -->
+</testng-results>

@@ -1,0 +1,15 @@
+env=user
+#common locators 
+
+
+
+#titles
+
+
+#login page
+username_css=input#useremail
+password_xpath=//input[@id='userpass']
+login_submit_id=loginsubmit
+
+
+

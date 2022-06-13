@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Booking Suite">	
+	<test  name="CreateBookingTest-- Apply discount-pay@Hotel">
+	<parameter name="action" value="pay@Hotel"></parameter>
+		<classes>
+			<class name="TestCases.BookingSearch">
+				<methods>
+					<include name="searchHotel"></include>
+					<include name="selectHotel"></include>
+					<include name="entetGuestInfo"></include>
+				</methods>
+			</class>
+			<class name="TestCases.PaymentManager">
+				<methods>
+					<include name="applyDiscount"></include>
+					<include name="makePayment"></include>
+				</methods>
+			</class>
+			<class name="TestCases.CustomerCommunications">
+				<methods>
+					<include name="checkEmail"></include>
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+	<test  name="CreateBookingTest-- no discount-pay@Hotel">
+	<parameter name="action" value="InstantPayment"></parameter>
+		<classes>
+			<class name="TestCases.BookingSearch">
+				<methods>
+					<include name="searchHotel"></include>
+					<include name="selectHotel"></include>
+					<include name="entetGuestInfo"></include>
+				</methods>
+			</class>
+			<class name="TestCases.PaymentManager">
+				<methods>
+					<include name="applyDiscount"></include>
+					<include name="makePayment"></include>
+				</methods>
+			</class>
+			<class name="TestCases.CustomerCommunications">
+				<methods>
+					<include name="checkEmail"></include>
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+	<test  name="ModifyBookingTest-- Apply discount-pay@Hotel">
+	<parameter name="action" value="InstantPayment"></parameter>
+		<classes>
+			<class name="TestCases.BookingSearch">
+				<methods>
+					<include name="LoadBooking"></include>
+					<include name="selectHotel"></include>
+					<include name="entetGuestInfo"></include>
+				</methods>
+			</class>
+			<class name="TestCases.PaymentManager">
+				<methods>
+					<include name="applyDiscount"></include>
+					<include name="makePayment"></include>
+				</methods>
+			</class>
+			<class name="TestCases.CustomerCommunications">
+				<methods>
+					<include name="checkEmail"></include>
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

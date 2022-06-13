@@ -1,0 +1,41 @@
+url1 = https://money.rediff.com/index.html
+url= https://portfolio.rediff.com/portfolio-login
+sign_xpath = //a[text()='Sign In']
+#login page
+username_css=input#useremail
+password_xpath=//input[@id='userpass']
+login_submit_id=loginsubmit
+
+
+
+
+#StockTable
+stock_xpath=//table[@id='stock']
+datafromrow_xpath=//table[@id='stock']//tr[2]//td[1]
+company =Reliance Inds.
+
+
+#calendar
+opencalendar_css=#buySellCalendar
+Date=22-08-2022
+forward_xpath=//table[@class='dpTable']//td[4]//button
+monthyear_css=div.dpTitleText
+quantity_css=#buysellqty
+quantity=20
+price_css=input[name='buysellprice']
+price=250
+submit_css=#buySellStockButton
+selectionAction_xpath=//td[@class='formField']//select
+selli=Sell
+quantitysell_css=#buysellqty
+quanitysell=50
+sellprice_css=#buysellprice
+sellingprice=100
+transaction_css=#transaction46766307
+trns_xpath=//table[@class='dataTable']//tbody
+box_xpath=//table[@class='dataTable']//tr[2]//td[1]
+edit_css=#editTransactionButton
+
+
+#grid
+grid_run=N

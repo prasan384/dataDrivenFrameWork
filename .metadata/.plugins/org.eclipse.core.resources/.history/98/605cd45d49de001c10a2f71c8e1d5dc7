@@ -1,0 +1,185 @@
+package KeyWords;
+
+import java.time.Duration;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
+import org.testng.asserts.SoftAssert;
+
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class GenericKeyWords {
+
+	public WebDriver driver;
+	public Properties prop;
+	public Properties envprop;
+	public ExtentTest test;
+	public SoftAssert softassert;
+	
+
+	public void openBrowser(String browser) {
+		log(" opening the browser " + browser);
+
+		/*
+		 * if (browser.equals("chrome")){
+		 * 
+		 * WebDriverManager.chromedriver().setup(); driver = (WebDriver) new
+		 * ChromeDriver();
+		 * 
+		 * }else if ( browser.equals("firefox")){
+		 * WebDriverManager.firefoxdriver().setup(); driver = (WebDriver)
+		 * newFirefoxDriver();
+		 * 
+		 * }else if (browser.equals("edge")) { WebDriverManager.edgedriver().setup();
+		 * driver = (WebDriver) new EdgeDriver();
+		 */
+
+		switch (browser.toLowerCase()) {
+		case "chrome":
+			WebDriverManager.chromedriver().setup();
+			driver = (WebDriver) new ChromeDriver();
+			break;
+		case "firefox":
+			WebDriverManager.firefoxdriver().setup();
+			driver = (WebDriver) new FirefoxDriver();
+			break;
+		case "edge":
+			WebDriverManager.edgedriver().setup();
+			driver = (WebDriver) new EdgeDriver();
+			break;
+		default:
+			System.out.println("Browsername is invalid");
+		}
+
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+	}
+
+	public void navigate(String urlkey) {
+		log("navigating to url" + urlkey);
+
+		driver.get(envprop.getProperty(urlkey));
+	}
+
+	public void click(String Locatorkey) {
+		log("clicking on locator" + Locatorkey);
+		getelement(Locatorkey).click();
+
+	}
+
+	public void type(String Locatorkey, String data) {
+		log("typing in " + Locatorkey + " data " + data);
+		getelement(Locatorkey).sendKeys(data);
+
+	}
+
+	public void select(String Locator, String data) {
+
+	}
+
+	public void getText(String Locator) {
+
+	}
+
+	// central function to extract element
+	public WebElement getelement(String Locatorkey) {
+		
+		
+		// check presence of element
+
+		if (!isElementPresent(Locatorkey)) {
+			// report a failure
+			test.log(Status.INFO," element not present " + Locatorkey);
+		}
+		
+		// check visibility of element
+
+		if (!isElementVisible(Locatorkey)) {
+			// report a failure
+			test.log(Status.INFO," element not visible " + Locatorkey);
+		}
+		WebElement e = driver.findElement(getLocator(Locatorkey));// calls get locator method
+		return e;
+	}
+
+	// true--> element present
+	// false ---> element not present
+	public boolean isElementPresent(String Locatorkey) {
+		test.log(Status.INFO," checking presence of " + Locatorkey);
+
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		try {
+			wait.until(ExpectedConditions.presenceOfElementLocated(getLocator(Locatorkey)));
+
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+
+	}
+	// true--> visible
+	// false ---> not visible
+
+	public boolean isElementVisible(String Locatorkey) {
+		test.log(Status.INFO," checking visibility of " + Locatorkey);
+
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		try {
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(getLocator(Locatorkey)));
+
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+
+	}
+
+	public By getLocator(String Locatorkey) {
+		By by = null;
+		if (Locatorkey.endsWith("_id"))
+			by = By.id(prop.getProperty(Locatorkey));
+		else if (Locatorkey.endsWith("_xpath"))
+			by = By.xpath(prop.getProperty(Locatorkey));
+		else if (Locatorkey.endsWith("_css"))
+			by = By.cssSelector(prop.getProperty(Locatorkey));
+		else if (Locatorkey.endsWith("_name"))
+			by = By.name(prop.getProperty(Locatorkey));
+		return by;
+
+	}
+
+	
+	public void log(String msg) {
+		test.log(Status.INFO, msg);
+		
+	}
+	
+	public void reportFailure(String failureMsg,boolean stopOnFailure) {
+		System.out.println(failureMsg);
+		test.log(Status.FAIL, failureMsg);// failure in extent reports
+		softassert.fail(failureMsg);// failure in testng i.e execution 
+		
+		if(stopOnFailure)// if failure is critical it should stop execution 
+			assertAll();
+	}
+	
+	public void assertAll() {
+		Reporter.getCurrentTestResult().getTestContext().setAttribute("criticalFailure","Y" );
+		
+		softassert.assertAll();
+	}
+}

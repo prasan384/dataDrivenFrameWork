@@ -1,0 +1,21 @@
+package KeyWords;
+
+public class ValidationKeywords extends GenericKeyWords {
+
+	public void validateTitle() {
+
+	}
+
+	public void validateText() {
+
+	}
+
+	public void validateElementPresent(String Locator) {
+		boolean result= isElementPresent(Locator);
+
+	}
+
+	public void validatelogin() {
+
+	}
+}
